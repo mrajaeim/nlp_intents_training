@@ -669,7 +669,7 @@
       ],
       "responses": [
         "The price of <PRODUCT> is $<PRICE>.",
-        "This product is on sale! you can purchase it with $<PRICE>",
+        "<PRODUCT> is on sale! you can purchase it with $<PRICE>",
         "This product is not available now."
       ],
       "extension": {

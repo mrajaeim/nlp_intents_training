@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>FastAPI Form and Answer</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        margin: 20px;
+      }
+      form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        background-color: lightgray;
+        padding: 20px;
+        border-radius: 10px;
+      }
+      label,
+      input[type="submit"] {
+        margin-top: 10px;
+      }
+      input[type="submit"] {
+        background-color: blue;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: lightblue;
+      }
+      p {
+        background-color: lightgray;
+        padding: 20px;
+        border-radius: 10px;
+        margin-top: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    {% if text %}
+    <p><span>You:</span> <span style="font-weight: 900;">{{ text }}</span></p>
+    <p><span style="font-weight: 900;">AI:</span> <span>{{ answer }}</span></p>
+    {% endif %}
+    <form action="/" method="get">
+      <label for="text">Enter Text:</label>
+      <input type="text" name="text" id="text" required />
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>

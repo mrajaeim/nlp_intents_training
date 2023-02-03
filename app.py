@@ -66,12 +66,7 @@ def predict_product(tokenized_sentence):
     raise "Product not found"
 
 
-while True:
-    # sentence = "do you use credit cards?"
-    sentence = input("You: ")
-    if sentence == "quit":
-        break
-
+def predict_answer(sentence):
     sentence = tokenize(sentence)
     X = bag_of_words(sentence, all_words_intents)
     X = X.reshape(1, X.shape[0])
@@ -102,18 +97,31 @@ while True:
                         if product['on_sale']:
                             message = intent['responses'][1].replace(
                                 "<PRICE>", str(product['price'])
+                            ).replace(
+                                "<PRODUCT>", product['title']
                             )
-                            print(f"{bot_name}: {message}")
+                            message = f"{bot_name}: {message}"
                         else:
                             message = intent['responses'][0].replace(
                                 "<PRICE>", str(product['price'])
                             ).replace(
                                 "<PRODUCT>", product['title']
                             )
-                            print(f"{bot_name}: {message}")
+                            message = f"{bot_name}: {message}"
                     except:
-                        print(f"{bot_name}: {intent['responses'][-1]}")
+                        message = f"{bot_name}: {intent['responses'][-1]}"
                 else:
-                    print(f"{bot_name}: {random.choice(intent['responses'])}")
+                    message = f"{bot_name}: {random.choice(intent['responses'])}"
     else:
-        print(f"{bot_name}: I do not understand...")
+        message  =f"{bot_name}: I do not understand..."
+    print(message)
+    return message
+
+
+if __name__ == "__main__":
+    while True:
+        # sentence = "do you use credit cards?"
+        sentence = input("You: ")
+        if sentence == "quit":
+            break
+        predict_answer(sentence)
